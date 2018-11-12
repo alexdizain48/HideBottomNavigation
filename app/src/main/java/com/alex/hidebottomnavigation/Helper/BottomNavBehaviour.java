@@ -25,7 +25,7 @@ public class BottomNavBehaviour extends CoordinatorLayout.Behavior {
     @Override   //будет вызван каждый раз когда что-то случится в layout, чтобы вернуть true
     public boolean layoutDependsOn(CoordinatorLayout parent, View child, View dependency) {
 
-        if (dependency instanceof Snackbar.SnackbarLayout) {
+        if (dependency instanceof Snackbar.SnackbarLayout) {  //ссылка_на_объект instanceof тип  ссылка_на_объект обозначает ссылку на экземпляр класса, а тип - конкретный тип этого класса
             updateSnackbar(child, dependency);
         }
         return super.layoutDependsOn(parent, child, dependency);
