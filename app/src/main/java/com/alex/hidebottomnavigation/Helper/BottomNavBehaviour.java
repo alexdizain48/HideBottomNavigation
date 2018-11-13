@@ -1,17 +1,28 @@
 package com.alex.hidebottomnavigation.Helper;
 
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewCompat;
+import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 
 public class BottomNavBehaviour extends CoordinatorLayout.Behavior {
 
+    public BottomNavBehaviour() {
+    }
+
+    public BottomNavBehaviour(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
     @Override  //События вложенной прокрутки начинаются
-    public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
+    public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout,
+                                       @NonNull View child, @NonNull View directTargetChild,
+                                       @NonNull View target, int axes, int type) {
         return axes == ViewCompat.SCROLL_AXIS_VERTICAL;
     }
 
@@ -19,8 +30,10 @@ public class BottomNavBehaviour extends CoordinatorLayout.Behavior {
     public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child, @NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type);
         child.setTranslationY(Math.max(0f,
-                Math.min(Float.parseFloat(String.valueOf(child.getHeight())), child.getTranslationX()+dyConsumed)));
+                Math.min(Float.parseFloat(String.valueOf(child.getHeight())), child.getTranslationY()+dyConsumed)));
     }
+
+    //Весь нижний код для появления Snackbar над BottomNavigationView
 
     @Override   //будет вызван каждый раз когда что-то случится в layout, чтобы вернуть true
     public boolean layoutDependsOn(CoordinatorLayout parent, View child, View dependency) {

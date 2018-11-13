@@ -19,9 +19,7 @@
             android:theme="@style/ToolbarOverlayTheme"
             app:layout_scrollFlags="scroll|enterAlways"
             app:title="Bottom"
-            app:titleTextColor="@android:color/white">
-
-        </android.support.v7.widget.Toolbar>
+            app:titleTextColor="@android:color/white"/>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -32,13 +30,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/bottom_nav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </android.support.design.widget.BottomNavigationView>
-
     </android.support.v7.widget.RecyclerView>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_behavior=".Helper.BottomNavBehaviour"
+        app:menu="@menu/bottom_nav_menu"
+        android:background="@android:color/white">
+
+    </android.support.design.widget.BottomNavigationView>
 
 </android.support.design.widget.CoordinatorLayout>
